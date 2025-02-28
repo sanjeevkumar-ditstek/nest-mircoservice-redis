@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schema/user.schema';
-import { DatabaseModule, CommonConfigModule } from '@app/common';
+import { DatabaseModule, CommonConfigModule, SecurityMiddleware, RequestTimeLoggerMiddleware } from '@app/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
@@ -30,4 +30,21 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   controllers: [UserController],
   providers: [UserService],
 })
-export class UserModule {}
+export class UserModule  {
+
+  // configure(consumer: MiddlewareConsumer) {
+  //   console.log('Configuring middlewares for UserModule...');  // Debugging line
+    
+  //   consumer
+  //     .apply(SecurityMiddleware)
+  //     .forRoutes('*'); // Apply globally
+
+  //   consumer
+  //     .apply(RequestTimeLoggerMiddleware)
+  //     .forRoutes('*'); // Apply globally
+
+  //   // Debugging to ensure middleware is applied
+  //   console.log('Middlewares applied for all routes.');
+  // }
+  
+}

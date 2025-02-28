@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ProxyController } from './proxy/proxy.controller';
+import { SecurityMiddleware, RequestTimeLoggerMiddleware } from '@app/common';
 
 @Module({
   imports: [
@@ -19,4 +20,18 @@ import { ProxyController } from './proxy/proxy.controller';
   ],
   controllers: [ProxyController],
 })
-export class ApiGatewayModule {}
+export class ApiGatewayModule {
+
+  configure(consumer: MiddlewareConsumer) {    
+    consumer
+      .apply(SecurityMiddleware)
+      .forRoutes('*'); // Apply globally
+
+    consumer
+      .apply(RequestTimeLoggerMiddleware)
+      .forRoutes('*'); // Apply globally
+
+    // Debugging to ensure middleware is applied
+    console.log('Middlewares applied for all routes.');
+  }
+}
