@@ -4,7 +4,7 @@ import { ClientProxy } from '@nestjs/microservices';
 @Injectable()
 export class AssessmentService {
   constructor(
-    @Inject('USER_SERVICE') private readonly userClient: ClientProxy,
+    @Inject('ASSESSMENT_SERVICE') private readonly userClient: ClientProxy,
   ) {}
   async getAssessment(assessmentId: number) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access

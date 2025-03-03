@@ -1,4 +1,4 @@
-enum StatusCodeEnum {
+export enum StatusCodeEnum {
   UNKNOWN_CODE = 0,
   OK = 200,
   BAD_REQUEST = 400,
@@ -10,5 +10,3 @@ enum StatusCodeEnum {
   GATEWAY_TIMEOUT = 504,
   ALREADY_EXIST = 409,
 }
-
-export default StatusCodeEnum;

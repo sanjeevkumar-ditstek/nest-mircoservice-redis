@@ -8,21 +8,29 @@
   "scripts": {
     "start:all": "npm start:all",
     "start": "nest start",
+    "build":"nest build",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/apps/api-gateway/main",
-    "start:microservices": "concurrently -k \"nest start --watch api-gateway\" \"nest start --watch assessment\" \"nest start --watch user\""
+    "start:prod": "node dist/apps/gateway/main",
+    "start:microservices": "concurrently -k \"nest start --watch gateway\" \"nest start --watch assessment\" \"nest start --watch general\" \"nest start --watch user\""
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^11.0.0",
     "@nestjs/microservices": "^11.0.10",
     "@nestjs/mongoose": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "continuation-local-storage": "^3.2.1",
     "ioredis": "^5.5.0",
+    "joi": "^17.13.3",
+    "nest-winston": "^1.10.2",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

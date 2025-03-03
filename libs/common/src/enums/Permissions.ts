@@ -4,4 +4,4 @@ export enum Permissions {
   UPDATE = 'update',
   DELETE = 'delete',
 }
-export default Permissions;
+

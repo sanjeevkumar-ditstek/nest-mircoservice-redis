@@ -3,4 +3,4 @@ export enum SocialTypes {
   APPLE = 'apple',
   FACEBOOK = 'facebook',
 }
-export default SocialTypes;
+

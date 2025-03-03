@@ -11,11 +11,6 @@ import { AssessmentService } from './assessment.service';
         transport: Transport.REDIS,
         options: { host: 'localhost', port: 6379 },
       },
-      {
-        name: 'USER_SERVICE', // Add User Microservice
-        transport: Transport.REDIS,
-        options: { host: 'localhost', port: 6379 },
-      },
     ]),
   ],
   controllers: [AssessmentController],

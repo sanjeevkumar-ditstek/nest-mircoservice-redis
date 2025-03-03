@@ -5,17 +5,17 @@
   "root": "apps",
   "compilerOptions": {
     "deleteOutDir": true,
-    "webpack": true,
+    "webpack": false,
     "tsConfigPath": "tsconfig.json"
   },
   "projects": {
-    "api-gateway": {
+    "gateway": {
       "type": "application",
-      "root": "apps/api-gateway",
+      "root": "apps/gateway",
       "entryFile": "main",
-      "sourceRoot": "apps/api-gateway/src",
+      "sourceRoot": "apps/gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+        "tsConfigPath": "apps/gateway/tsconfig.app.json"
       }
     },
     "assessment": {
@@ -36,13 +36,13 @@
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
     },
-    "general-service": {
+    "general": {
       "type": "application",
-      "root": "apps/general-service",
+      "root": "apps/general",
       "entryFile": "main",
-      "sourceRoot": "apps/general-service/src",
+      "sourceRoot": "apps/general/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/general-service/tsconfig.app.json"
+        "tsConfigPath": "apps/general/tsconfig.app.json"
       }
     },
     "user": {
@@ -52,15 +52,6 @@
       "sourceRoot": "apps/user/src",
       "compilerOptions": {
         "tsConfigPath": "apps/user/tsconfig.app.json"
-      }
-    },
-    "utils": {
-      "type": "library",
-      "root": "libs/utils",
-      "entryFile": "index",
-      "sourceRoot": "libs/utils/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/utils/tsconfig.lib.json"
       }
     }
   }

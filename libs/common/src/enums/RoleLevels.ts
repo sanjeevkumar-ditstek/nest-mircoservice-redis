@@ -4,4 +4,3 @@ export enum RoleLevel {
   USER = 3,
 }
 
-export default RoleLevel;

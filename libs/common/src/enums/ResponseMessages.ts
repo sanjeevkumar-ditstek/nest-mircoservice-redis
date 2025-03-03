@@ -1,6 +1,4 @@
-enum ResponseMessage {
-  USER_REGISTRATION = 'Error in register user ',
+ export enum ResponseMessages {
+  USER_REGISTRATION   =   'User registered success',
   INVALID_CREDENTIALS = 'Invalid credentials',
 }
-
-export default ResponseMessage;

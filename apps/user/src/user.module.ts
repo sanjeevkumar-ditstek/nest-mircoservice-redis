@@ -3,8 +3,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from './schema/user.schema';
-import { DatabaseModule, CommonConfigModule } from '@app/common';
+import { User, UserSchema } from '@app/common';
+import { DatabaseModule, CommonConfigModule, AppLogger} from '@app/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
@@ -28,6 +28,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ]),
   ],
   controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService, AppLogger],
+  exports: [AppLogger],
 })
 export class UserModule {}

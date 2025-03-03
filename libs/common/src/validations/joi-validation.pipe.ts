@@ -4,17 +4,34 @@ import {
   ArgumentMetadata,
   BadRequestException,
 } from '@nestjs/common';
-import { ObjectSchema } from '@hapi/joi';
+import { ObjectSchema, ValidationResult } from 'joi';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
-export class JoiValidationPipe implements PipeTransform {
-  constructor(private schema: ObjectSchema) {}
+export class JoiValidationPipe<T> implements PipeTransform {
+  constructor(private readonly schema: ObjectSchema<T>) {}
 
-  transform(value: any, metadata: ArgumentMetadata) {
-    const { error } = this.schema.validate(value);
-    if (error) {
-      throw new BadRequestException(error.details[0].message);
+  transform(value: unknown, metadata: ArgumentMetadata): T {
+    const validationResult: ValidationResult<T> = this.schema.validate(value, {
+      abortEarly: false, // Return all validation errors
+      stripUnknown: true, // Remove unknown properties
+    });
+
+    if (validationResult.error) {
+      // Extract error messages
+      const errors = validationResult.error.details.map((err) => ({
+        field: err.path.join('.'),
+        message: err.message.replace(/['"]/g, ''), // Remove extra quotes
+      }));
+
+      // If running in a microservice, use RpcException instead of HttpException
+      throw new RpcException({
+        status: 'error',
+        message: 'Validation failed',
+        response: errors,
+      });
     }
-    return value;
+
+    return validationResult.value as T;
   }
 }
